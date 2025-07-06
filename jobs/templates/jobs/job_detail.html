@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ job.title }} - Job Details</title>
+    <style>
+        body { font-family: Arial; background: #f0f2f5; padding: 20px; }
+        .card {
+            background: white; max-width: 700px; margin: auto;
+            padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        p { color: #555; line-height: 1.6; }
+        .meta { margin-top: 10px; font-size: 14px; color: #777; }
+        .btn {
+            display: inline-block; margin-top: 20px; padding: 10px 20px;
+            background: #007bff; color: white; text-decoration: none; border-radius: 5px;
+        }
+        .btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>{{ job.title }}</h1>
+        <p><strong>Company:</strong> {{ job.company }}</p>
+        <p><strong>Location:</strong> {{ job.location }}</p>
+        <p><strong>Type:</strong> {{ job.job_type }}</p>
+        <p class="meta">Posted on {{ job.posted_at|date:"d M Y" }}</p>
+        <hr>
+        <p>{{ job.description }}</p>
+        <a href="{% url 'apply_job' job.id %}" class="btn">Apply Now</a>
+    </div>
+</body>
+</html>

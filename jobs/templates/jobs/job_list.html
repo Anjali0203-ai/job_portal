@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Listings</title>
+    <style>
+        body { font-family: Arial; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .job-card {
+            background: white; padding: 20px; margin-bottom: 20px;
+            border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .job-card h2 { margin-top: 0; }
+        .job-card p { margin: 5px 0; color: #555; }
+        .meta { font-size: 13px; color: #999; }
+        a.btn {
+            display: inline-block; margin-top: 10px; padding: 8px 15px;
+            background: #007bff; color: white; text-decoration: none; border-radius: 4px;
+        }
+        a.btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧑‍💼 Job Openings</h1>
+        {% for job in jobs %}
+        <div class="job-card">
+            <h2>{{ job.title }}</h2>
+            <p><strong>Company:</strong> {{ job.company }}</p>
+            <p><strong>Location:</strong> {{ job.location }}</p>
+            <p>{{ job.description|truncatewords:30 }}</p>
+            <p class="meta">Posted: {{ job.posted_at|date:"d M Y" }}</p>
+            <a href="{% url 'job_detail' job.id %}" class="btn">View Details</a>
+        </div>
+        {% empty %}
+        <p>No jobs available right now.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
